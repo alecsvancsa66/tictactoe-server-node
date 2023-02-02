@@ -14,9 +14,5 @@ export class MainController {
     @SocketIO() io: Server
   ) {
     console.log(`User connected: ${socket.id}`);
-
-    socket.on("custom_event", (data: any) => {
-      console.log("Data: ", data);
-    });
   }
 }
