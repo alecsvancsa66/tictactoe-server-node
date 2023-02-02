@@ -34,6 +34,14 @@ export class RoomController {
     } else {
       await socket.join(message.roomId);
       socket.emit("room_joined");
+
+      // after the user joins - check if the game can start
+      if (io.sockets.adapter.rooms.get(message.roomId)?.size === 2) {
+        socket.emit("start_game", { start: true, symbol: "x" });
+        socket
+          .to(message.roomId)
+          .emit("start_game", { start: false, symbol: "o" });
+      }
     }
   }
 }

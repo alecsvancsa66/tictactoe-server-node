@@ -3,6 +3,7 @@ import { Server } from "socket.io";
 
 import { MainController } from "./controllers/mainController";
 import { RoomController } from "./controllers/roomController";
+import { GameController } from "./controllers/gameControllet";
 
 export default (httpServer: any) => {
   const io = new Server(httpServer, {
@@ -12,7 +13,9 @@ export default (httpServer: any) => {
     },
   });
 
-  useSocketServer(io, { controllers: [MainController, RoomController] });
+  useSocketServer(io, {
+    controllers: [MainController, RoomController, GameController],
+  });
 
   return io;
 };
