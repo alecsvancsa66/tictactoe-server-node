@@ -10,6 +10,7 @@ import { Server, Socket } from "socket.io";
 @SocketController()
 export class GameController {
   private getSocketGameRoom(socket: Socket): string {
+    // remove the default socket room
     const socketRooms = Array.from(socket.rooms.values()).filter(
       (room) => room !== socket.id
     );
